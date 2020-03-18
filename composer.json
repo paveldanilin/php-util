@@ -1,0 +1,30 @@
+{
+    "name": "paveldanilin/php-util",
+    "type": "library",
+    "description": "A set of reusable helpers",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pavel Danilin",
+            "email": "pavel.k.danilin@gmail.com"
+        }
+    ],
+	"scripts": {
+		"fix": "php-cs-fixer fix src",
+		"test": "phpunit --testdox"
+	},
+    "require": {
+      "php": ">=7.2",
+      "ext-json": "*"
+    },
+	"require-dev": {
+		"phpunit/phpunit": "8.5.2",
+		"friendsofphp/php-cs-fixer": "2.16.1"
+	},
+	"autoload": {
+		"psr-4": {
+			"paveldanilin\\PhpUtil\\": "src/"
+		},
+		"files": ["src/bootstrap.php"]
+	}
+}
