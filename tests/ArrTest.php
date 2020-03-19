@@ -18,6 +18,17 @@ class ArrTest extends TestCase
         $this->assertSame(123, $val);
     }
 
+    public function testPartialFindException()
+    {
+        $this->expectException(\OutOfRangeException::class);
+        $data = [
+            'a' => 1,
+            'b' => 2,
+            'c' => 3,
+        ];
+        Arr::find('a.b.c', $data);
+    }
+
     public function testFindException()
     {
         $this->expectException(\OutOfRangeException::class);

@@ -8,6 +8,8 @@ abstract class Arr
     {
         $temp = &$data;
         $pathChunks = \explode($delimiter, $path);
+        $pathLen = \count($pathChunks);
+        $pos = 0;
 
         foreach ($pathChunks as $key) {
             if (\is_array($temp)) {
@@ -17,6 +19,7 @@ abstract class Arr
                     );
                 }
                 $temp = &$temp[$key];
+                $pos++;
             } elseif (\is_object($temp)) {
                 if (! isset($temp->{$key})) {
                     throw new \OutOfRangeException(
@@ -24,8 +27,16 @@ abstract class Arr
                     );
                 }
                 $temp = &$temp->{$key};
+                $pos++;
             }
         }
+
+        if ($pathLen != $pos) {
+            throw new \OutOfRangeException(
+                \sprintf('Path not found `%s`', \implode($delimiter, $pathChunks))
+            );
+        }
+
         return $temp;
     }
 
