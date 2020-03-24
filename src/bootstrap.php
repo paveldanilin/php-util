@@ -5,7 +5,9 @@ if (PHP_VERSION_ID < 70300) {
         define('JSON_THROW_ON_ERROR', 4194304);
     }
 
-    class JsonException extends \Exception
-    {
+    if (!\class_exists('JsonException')) {
+        class JsonException extends \Exception
+        {
+        }
     }
 }
